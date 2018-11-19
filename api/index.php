@@ -8,12 +8,16 @@ Flight::route("/", function(){
   echo "Ini adalah API sebagai endpoint.";
 });
 
-Flight::route("GET /login", [$api, 'login']);
+Flight::route("POST /login", [$api, 'login']);
 
 
 // 404 redirected to index
 Flight::route("GET *", function(){
-  Flight::redirect('/');
+  Flight::json([
+    "status"  => 404,
+    "message" => "Not Found",
+    "data" => null
+  ]);
 });
 
 Flight::start();
