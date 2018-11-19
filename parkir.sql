@@ -76,6 +76,7 @@ INSERT INTO place (nama, jurusan, fakultas) VALUES
 ('Parkiran Fakultas Hukum', 'S1 Ilmu Hukum', 'Hukum'),
 ('Parkiran Kedokteran', 'S1 Kedokteran Umum', 'Kedokteran');
 
+-- default password -> 12345678
 INSERT INTO officer (nama, username, password, id_place) VALUES
 ('Sueb', 'sueb', '$2y$10$Wl08vpxbi4di6n4GVwBVW.STEt6MyBWeqSR1myj5QCrqmPhYl7PUi', 1),
 ('Parman', 'parman', '$2y$10$Wl08vpxbi4di6n4GVwBVW.STEt6MyBWeqSR1myj5QCrqmPhYl7PUi', 1);
