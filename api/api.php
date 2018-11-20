@@ -83,7 +83,7 @@ class Api {
     }
   }
 
-  public function data_parkir(){
+  public function realtime(){
     $query = "
       SELECT s.id, s.waktu, v.merk, v.tipe, o.nama FROM scan s
       INNER JOIN vehicle v
