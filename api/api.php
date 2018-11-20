@@ -107,4 +107,43 @@ class Api {
     $this->response($data);
   }
 
+  public function scan(){
+    $input = Flight::request()->data;
+
+    if(!(isset($input->kode_qr) && isset($input->id_officer)))
+      $this->response400();
+
+    $input->kode_qr = $this->purify($input->kode_qr);
+    $input->id_officer = (int) $this->purify($input->id_officer);
+
+    // check officer data
+    $query = "SELECT id FROM officer WHERE id = $input->id_officer";
+    $result= mysqli_query($this->koneksi, $query);
+
+    if($result->num_rows == 0){
+      $this->response(null, 403, "Permission denied");
+      die();
+    }
+    else {
+      // check qr_code
+      $query = "SELECT kode_qr FROM vehicle WHERE kode_qr = '$input->kode_qr'";
+      $result= mysqli_query($this->koneksi, $query);
+
+      if($result->num_rows == 0){
+        $this->response(null, 404, "QR Code doesn't exists");
+        die();
+      }
+      else {
+        $query = "SELECT id FROM vehicle WHERE kode_qr = '$input->kode_qr'";
+        $result= mysqli_query($this->koneksi, $query);
+        $result= mysqli_fetch_assoc($result);
+
+        $query = "INSERT INTO scan (id_vehicle, id_officer) VALUES (". $result['id'] .", ". $input->id_officer .")";
+        mysqli_query($this->koneksi, $query) or $this->response(null, 500, "Internal Server Error");
+
+        $this->response();
+      }
+    }
+  }
+
 }

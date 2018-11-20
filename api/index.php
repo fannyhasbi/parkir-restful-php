@@ -9,7 +9,7 @@ Flight::route("/", function(){
 });
 
 Flight::route("POST /login", [$api, 'login']);
-
+Flight::route("POST /scan", [$api, 'scan']);
 Flight::route("GET /data-parkir", [$api, 'data_parkir']);
 
 // 404 redirected to index
