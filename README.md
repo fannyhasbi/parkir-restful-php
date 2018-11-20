@@ -70,13 +70,15 @@ Success response example
     {
       "id": 1,
       "waktu": "2018-10-20 00:00:00",
-      "merk": "Vario",
+      "merk": "Honda",
+      "tipe": "Vario",
       "nama": "Fanny Hasbi"
     },
     {
       "id": 2,
       "waktu": "2018-11-20 19:46:38",
-      "merk": "Vario",
+      "merk": "Honda",
+      "tipe": "Vario",
       "nama": "Fanny Hasbi"
     }
   ]
