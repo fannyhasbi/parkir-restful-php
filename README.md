@@ -1,5 +1,113 @@
 # Parkir RESTful PHP
-RESTful web for QR Scan parking system
+RESTful web for QR Scan parking system built with PHP and ["Flight"](http://flightphp.com) micro-framework
 
 ## Entity Relationship Diagram
 !["Parkir RESTful PHP"](erd-parking-system.png "ERD Parking System")
+
+## Requests
+### Login
+**POST** `/api/login`
+
+Endpoint to login
+
+Post parameters
+
+| Property | Type | Description |
+| --- | --- | --- |
+| username | String | Officer username | 
+| password | String | Officer password |
+| login | String | Whatever string |
+
+Success response example
+```json
+{
+  "status": 200,
+  "message": "OK",
+  "data": {
+    "id": 2,
+    "nama": "Parman",
+    "username": "parman",
+    "parkiran": "Parkiran GKB",
+    "jurusan": "S1 Teknik Komputer",
+    "fakultas": "Teknik"
+  }
+}
+```
+
+### Scan
+**POST** `/api/scan`
+
+Endpoint to scan a QR Code
+
+Post parameters
+
+| Property | Type | Description |
+| --- | --- | --- |
+| kode_qr | String | QR Code text |
+| id_officer | Number | Officer ID |
+
+Success response example
+```json
+{
+  "status": 200,
+  "message": "OK",
+  "data": null
+}
+```
+
+
+### Real Time
+**GET** `/api/realtime`
+
+Endpoint to get real time scan information
+
+Success response example
+```json
+{
+  "status": 200,
+  "message": "OK",
+  "data": [
+    {
+      "id": 1,
+      "waktu": "2018-10-20 00:00:00",
+      "merk": "Vario",
+      "nama": "Fanny Hasbi"
+    },
+    {
+      "id": 2,
+      "waktu": "2018-11-20 19:46:38",
+      "merk": "Vario",
+      "nama": "Fanny Hasbi"
+    }
+  ]
+}
+```
+
+### Data Parkir
+**GET** `/api/data-parkir`
+
+Endpoint to get monthly report of the officer's place scan results
+
+Get parameters
+
+| Property | Type | Description |
+| --- | --- | --- |
+| id_officer | Number | Officer ID |
+
+Success response example
+```json
+{
+  "status": 200,
+  "message": "OK",
+  "data": [
+    {
+      "waktu": "November 2018",
+      "jumlah": 3
+    },
+    {
+      "waktu": "Oktober 2018",
+      "jumlah": 1
+    }
+  ]
+}
+```
