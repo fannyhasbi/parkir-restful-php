@@ -107,6 +107,53 @@ class Api {
     $this->response($data);
   }
 
+  public function data_parkir(){
+    $input = Flight::request()->query;
+    if(! isset($input->id_officer))
+      $this->response400();
+
+    // check officer data
+    $query = "SELECT id FROM officer WHERE id = $input->id_officer";
+    $result= mysqli_query($this->koneksi, $query);
+    
+    if($result->num_rows == 0){
+      $this->response(null, 401, "Unauthorized");
+      die();
+    }
+    else {
+      // get id_place from officer
+      $query = "SELECT id_place FROM officer WHERE id = $input->id_officer";
+      $result= mysqli_query($this->koneksi, $query);
+      $id_place = mysqli_fetch_assoc($result)['id_place'];
+
+      // get data per parkir
+      $query = "
+        SELECT
+          CONCAT(YEAR(s.waktu), '-', MONTH(s.waktu)) AS waktu,
+          COUNT(*) AS jumlah
+        FROM scan s
+        INNER JOIN officer o
+          ON s.id_officer = o.id
+        WHERE o.id_place = $id_place
+        GROUP BY YEAR(s.waktu), MONTH(s.waktu)
+        ORDER BY waktu DESC
+      ";
+
+      $result = mysqli_query($this->koneksi, $query);
+
+      $show = array();
+
+      while($r = mysqli_fetch_assoc($result)){
+        $show[] = [
+          "waktu" => date_definer($r['waktu']),
+          "jumlah"=> (int) $r['jumlah']
+        ];
+      }
+
+      $this->response($show);
+    }
+  }
+
   public function scan(){
     $input = Flight::request()->data;
 

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__."/flight/Flight.php";
+require_once __DIR__."/helpers/function.php";
 require_once __DIR__."/api.php";
 
 $api = new Api();
