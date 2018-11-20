@@ -22,7 +22,7 @@ class Api {
 
   private function response($data = null, $status = 200, $message = "OK"){
     Flight::json([
-      "status" => $status,
+      "status" => (int) $status,
       "message"=> $message,
       "data"   => $data
     ]);
@@ -81,6 +81,30 @@ class Api {
         ]);
       }
     }
-
   }
+
+  public function data_parkir(){
+    $query = "
+      SELECT s.id, s.waktu, v.merk, v.tipe, o.nama FROM scan s
+      INNER JOIN vehicle v
+        ON s.id_vehicle = v.id
+      INNER JOIN owner o
+        ON v.id_owner = o.id
+    ";
+    
+    $result = mysqli_query($this->koneksi, $query) or die(mysqli_error($this->koneksi));
+    $data = array();
+
+    while($r = mysqli_fetch_assoc($result)){
+      $data[] = [
+        "id"    => (int) $r['id'],
+        "waktu" => $r['waktu'],
+        "merk"  => $r['tipe'],
+        "nama"  => $r['nama']
+      ];
+    }
+    
+    $this->response($data);
+  }
+
 }
