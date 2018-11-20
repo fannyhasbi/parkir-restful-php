@@ -55,6 +55,14 @@ Success response example
 }
 ```
 
+Response if QR Code doesn't exists
+```json
+{
+  "status": 404,
+  "message": "QR Code doesn't exists",
+  "data": null
+}
+```
 
 ### Real Time
 **GET** `/api/realtime`
