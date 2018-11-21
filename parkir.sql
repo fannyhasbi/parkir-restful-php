@@ -69,7 +69,7 @@ INSERT INTO owner (nama, nim) VALUES
 ('Adam Maulidani', '60');
 
 INSERT INTO vehicle (plat, merk, tipe, kode_qr, id_owner) VALUES
-('G1234AAG', 'Honda', 'Vario', 'd90073c58963e77518ddf3aa1453fc59', 1),
+('G1234AAG', 'Honda', 'Vario', 'bc8b21bf1534eefab0a19dbcd531dc63', 1),
 ('H555BDG', 'Kawasaki', 'Ninja', '14db7e40d11daf1fd4c2198288c94411', 2);
 
 INSERT INTO place (nama, jurusan, fakultas) VALUES
