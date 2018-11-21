@@ -10,7 +10,7 @@ I use some algorithm and pattern to accomplish a QR Code text
 
 ```
 // String concat
-QR = md5(userId + plat)
+QR = md5(plat + merk)
 ```
 
 ## Requests
