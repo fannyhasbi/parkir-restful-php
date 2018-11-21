@@ -9,11 +9,12 @@ class Api {
     // Mengatasi isu CORS
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: x-requested-with, x-requested-by");
-    header("Access-Control-Allow-Methods: POST, GET");
+    header("Access-Control-Expose-Headers: Access-Control-Allow-Origin");
+    header("Access-Control-Allow-Methods: *");
     header("Content-Type: application/json");
-    // header( "Access-Control-Allow-Credentials: true");
+    header( "Access-Control-Allow-Credentials: true");
     // header( "Access-Control-Max-Age: 604800");
-    // header( "Access-Control-Request-Headers: x-requested-with");
+    header( "Access-Control-Request-Headers: x-requested-with");
   }
 
   public function __destruct(){
