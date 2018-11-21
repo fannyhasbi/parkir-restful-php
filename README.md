@@ -4,6 +4,15 @@ RESTful web for QR Scan parking system built with PHP and ["Flight"](http://flig
 ## Entity Relationship Diagram
 !["Parkir RESTful PHP"](erd-parking-system.png "ERD Parking System")
 
+## QR Code Schema
+
+I use some algorithm and pattern to accomplish a QR Code text
+
+```
+// String concat
+QR = md5(userId + plat)
+```
+
 ## Requests
 ### Login
 **POST** `/api/login`
